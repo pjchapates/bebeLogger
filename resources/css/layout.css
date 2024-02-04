@@ -8,7 +8,6 @@
     flex-direction: column;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-evenly;
@@ -30,20 +29,15 @@ header li {
   padding: 0 10px;
 }
 
-input {
-
-}
-
 .button-icon-center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 5%;
+  width: 80px;
 }
 
-/* Main content */
 .main {
-  margin-top: 150px; /* Add a top margin to avoid content overlay */
+  margin-top: 150px;
   width: 100%;
 }
 

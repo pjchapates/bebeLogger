@@ -73,7 +73,8 @@ button {
 }
 
 .pink-img-filter {
-  filter: invert(89%) sepia(16%) saturate(2069%) hue-rotate(286deg) brightness(96%) contrast(101%)
+  /* filter: invert(89%) sepia(16%) saturate(2069%) hue-rotate(286deg) brightness(96%) contrast(101%); */
+  filter: invert(100%);
 }
 
 #blink_text{	
