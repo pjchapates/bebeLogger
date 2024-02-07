@@ -1,11 +1,15 @@
 @font-face {
-    font-family: roboto-mono;
-    src: url(https://webapps1.chicago.gov/cdn/uswds-2.2.1/fonts/roboto-mono/roboto-mono-v5-latin-regular.woff2);
+  font-family: roboto-mono;
+  src: url(https://webapps1.chicago.gov/cdn/uswds-2.2.1/fonts/roboto-mono/roboto-mono-v5-latin-regular.woff2);
+}
+
+* {
+  font-family: roboto-mono;
 }
 
 body {
-    background-color: #353935;
-  }
+  background-color: #353935;
+}
 
 header {
   background-color: #555;
@@ -23,40 +27,40 @@ header a:hover {
 
 header a {
   font-family: roboto-mono;
-  color:#f79ac0;
+  color: #f79ac0;
 }
-  
+
 h1 {
-    color: lightgoldenrodyellow;
-    font-family: roboto-mono;
-    font-size: 24px;
-  }
+  color: lightgoldenrodyellow;
+  font-family: roboto-mono;
+  font-size: 24px;
+}
 
 h2 {
-    color: #f79ac0;
-    font-family: roboto-mono;
-    font-size: 24px;
-  }
-  
+  color: #f79ac0;
+  font-family: roboto-mono;
+  font-size: 24px;
+}
+
 p {
-    font-family: roboto-mono;
-    font-size: 20px;
-  }
+  font-family: roboto-mono;
+  font-size: 20px;
+}
 
 button {
-    border: none;
-    background-color: white;
-    color: #f79ac0;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-family: roboto-mono;
-    font-size: 24px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  
+  border: none;
+  background-color: white;
+  color: #f79ac0;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: roboto-mono;
+  font-size: 24px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 .big-button {
   background-color: #353935;
   color: #f79ac0;
@@ -68,25 +72,63 @@ button {
 }
 
 .big-button:hover {
-  background-color: lightslategray;
+  background-color: #4D5153;
   color: goldenrod;
 }
 
-.pink-img-filter {
-  /* filter: invert(89%) sepia(16%) saturate(2069%) hue-rotate(286deg) brightness(96%) contrast(101%); */
+.clickable-list-item {
+  font-size: 24px;
+  font-weight: bold;
+  color: lightgoldenrodyellow;
+  list-style-type: none;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.clickable-list-item-selected {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: lightskyblue;
+  color: lightgoldenrodyellow;
+  list-style-type: none;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.cmd-text {
+  font-size: 18px;
+  font-weight: 300;
+  color: silver;
+  border: 1px solid black;
+}
+
+img {
   filter: invert(100%);
 }
 
-#blink_text{	
-    animation-name:blink;
-    width:280px;
-    animation-duration:2s;
-    animation-timing-function:steps();
-    animation-iteration-count:Infinite;
-    }
-  
-@keyframes blink{
-    0%{color:lightgoldenrodyellow;}
-    50%{color:transparent;}
-    100%{color:lightgoldenrodyellow;}
+button:hover>img {
+  filter: invert(58%) sepia(9%) saturate(2887%) hue-rotate(182deg) brightness(97%) contrast(92%);
+}
+
+
+#blink_text {
+  animation-name: blink;
+  width: 280px;
+  animation-duration: 2s;
+  animation-timing-function: steps();
+  animation-iteration-count: Infinite;
+}
+
+@keyframes blink {
+  0% {
+    color: lightgoldenrodyellow;
+  }
+
+  50% {
+    color: transparent;
+  }
+
+  100% {
+    color: lightgoldenrodyellow;
+  }
 }

@@ -8,15 +8,28 @@
     flex-direction: column;
 }
 
+.nested-form {
+  margin-left: 5%;
+  padding-left: 3px;
+}
+
+/* TODO: look up CSS position sticky */
 header {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
-  padding-right: 10px;
+}
+
+/* TODO: give meaningful class names to these */
+header > h1 {
+  flex: 1;
   padding-left: 10px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #nav-title {
@@ -39,6 +52,15 @@ header li {
 .main {
   margin-top: 150px;
   width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.clickable-list-item {
+  margin: 0px 0px 10px 0px;
+  padding: 5px;
 }
 
 

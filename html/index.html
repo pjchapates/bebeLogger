@@ -1,60 +1,160 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="../resources/css/dark-theme.css">
-        <link rel="stylesheet" href="../resources/css/layout.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <title>
-        bebelogger
-    </title>
+
+<head>
+    <link rel="stylesheet" href="../resources/css/dark-theme.css">
+    <link rel="stylesheet" href="../resources/css/layout.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<title>
+    bebelogger
+</title>
+
 <body>
 
 
-<!-- Navbar -->
-<header>
-    <h1 id="nav-title">
-        <a href="tbd">
-            <h1>
-                bebeLogger(<span id = "blink_text">▁</span>)
-            </h1>
-        </a>
-    </h1>
-    <nav>
-        <ul>
-            <li><a href="tbd">Page1</a></li>
-            <li><a href="tbd">Page2</a></li>
-        </ul>
-    </nav>
-</header>
+    <!-- Navbar -->
+    <header>
+        <h1 id="nav-title">
+            <a href="tbd">
+                <h1>
+                    bebeLogger(<span id="blink_text">▁</span>)
+                </h1>
+            </a>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="tbd">Page1</a></li>
+                <li><a href="tbd">Page2</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="main">
-    <div class="flex-container-vert">
-        <button class="big-button">
-            <div class="flex-container-vert">
+    <div class="main">
+        <div class="flex-container-vert">
+            <p class="cmd-text" id="logCmdText"></p>
+            <button class="big-button" id="diaper-log-button">
                 logDiaperChange
-                <img src="../resources/imgs/diaper-icon.png" alt="Diaper Icon" class="button-icon-center pink-img-filter"/>
+                <img src="../resources/imgs/diaper-icon.png" alt="Diaper Icon" class="button-icon-center icon" />
+            </button>
+            <div class="flex-container-vert nested-form" id="diaper-log-form" style="display: none">
+                <h2>Select all that apply:</h2>
+                <ul>
+                    <li class="clickable-list-item" id="num1">Numero Uno</li>
+                    <li class="clickable-list-item" id="num2">Numero Dos</li>
+                </ul>
             </div>
-        </button>
 
-        <button class="big-button">
-            logFeeding
-            <img src="../resources/imgs/bottle-icon.png" alt="Bottle Icon" class="button-icon-center pink-img-filter"/>
-        </button>
+            <button class="big-button" class="big-button" id="feeding-log-button">
+                logFeeding
+                <img src="../resources/imgs/bottle-icon.png" alt="Bottle Icon" class="button-icon-center icon" />
+            </button>
+            <div class="flex-container-vert nested-form" id="feeding-log-form" style="display: none">
+                <ul class="flex-container">
+                    <li style="display: inline; flex-grow: 1" class="clickable-list-item" id="boob-option">Boob</li>
+                    <li style="display: inline; flex-grow: 1" class="clickable-list-item" id="bottle-option">Bottle</li>
+                </ul>
+                <div class="flex-container-vert nested-form" id="boob-options-form" style="display: none">
+                    <ul>
+                        <li class="clickable-list-item" id="booboption1">booboption1</li>
+                        <li class="clickable-list-item" id="booboption2">booboption2</li>
+                        <li>
+                            <div>
+                                <input type="range" id="left-duration" name="left-duration" min="0" max="10" />
+                                <label for="left-duration">Left Duration</label>
+                            </div>
+                        </li>
+                    </ul>
 
-        <button class="big-button">
-            logOther
-        </button>
+                </div>
+                <div class="flex-container-vert nested-form" id="bottle-options-form" style="display: none">
+                    <ul>
+                        <li class="clickable-list-item" id="bottleoption1">bottleoption1</li>
+                        <li class="clickable-list-item" id="bottleoption2">bottleoption2</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="big-button">
+                logOther
+            </button>
+        </div>
     </div>
-</div>
-  
 
+    <p>THIS IS A CHANGE</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+    <p>asdfasdfasdfasdfasdf</p>
+
+    <script type="text/javascript" src="../resources/js/main.js"></script>
 </body>
 
 <footer>
     <div class="flex-container">
-        <a href="https://www.flaticon.com/free-icons/diaper" title="diaper icons">Diaper icons created by Smashicons - Flaticon</a>
-        <a href="https://www.flaticon.com/free-icons/baby-bottle" title="baby bottle icons">Baby bottle icons created by Freepik - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/diaper" title="diaper icons">Diaper icons created by Smashicons -
+            Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/baby-bottle" title="baby bottle icons">Baby bottle icons created by
+            Freepik - Flaticon</a>
     </div>
 </footer>
+
 </html>
