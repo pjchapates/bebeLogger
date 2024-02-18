@@ -32,6 +32,44 @@ class Feeding {
         this.feedingType = feedingType;
     }
 
+    setFeedingTypeBoob() {
+        this.feedingType = 'boob';
+
+        // Update the bottle to ensure that it's not considered selected
+        const unselectedOption = document.getElementById('bottle-option');
+        console.log(`unselected option classList ${unselectedOption.classList}`);
+        unselectedOption.classList.remove(`clickable-list-item-selected`);
+
+        const selectedObject = document.getElementById('boob-option');
+        selectedObject.classList.add(`clickable-list-item-selected`);
+        console.log(`selected option classList ${selectedObject.classList}`);
+
+        // Now lets bring up the boob option form and ensure the bottle is closed
+        const boobOptionForm = document.getElementById('boob-options-form');
+        boobOptionForm.style.display = 'block';
+        const bottleOptionForm = document.getElementById('bottle-options-form');
+        bottleOptionForm.style.display = 'none';
+    }
+
+    setFeedingTypeBottle() {
+        this.feedingType = 'bottle';
+
+        // Update the bottle to ensure that it's not considered selected
+        const unselectedOption = document.getElementById('boob-option');
+        console.log(`unselected option classList ${unselectedOption.classList}`);
+        unselectedOption.classList.remove(`clickable-list-item-selected`);
+
+        const selectedObject = document.getElementById('bottle-option');
+        selectedObject.classList.add(`clickable-list-item-selected`);
+        console.log(`selected option classList ${selectedObject.classList}`);
+
+        // Now lets bring up the bottle option form and ensure the boob is closed
+        const boobOptionForm = document.getElementById('boob-options-form');
+        boobOptionForm.style.display = 'none';
+        const bottleOptionForm = document.getElementById('bottle-options-form');
+        bottleOptionForm.style.display = 'block';
+    }
+
     toString() {
         return `feedType = ${this.feedingType}`;
     }
@@ -132,46 +170,9 @@ function listItemClicked(e) {
 
 function boobOptionClickHandler() {
     // If feeding type is already boob, then we want to 'deselect this?
-    if (feeding.feedingType == `boob`) {
-        return;
-    }
-
-    else {
-        feeding.setFeedingType('boob');
-
-        // Update the bottle to ensure that it's not considered selected
-        const unselectedOption = document.getElementById('bottle-option');
-        console.log(`unselected option classList ${unselectedOption.classList}`);
-        unselectedOption.classList.remove(`clickable-list-item-selected`);
-
-        const selectedObject = document.getElementById('boob-option');
-        selectedObject.classList.add(`clickable-list-item-selected`);
-        console.log(`selected option classList ${selectedObject.classList}`);
-
-        // Now lets bring up the boob option form and ensure the bottle is closed
-        const boobOptionForm = document.getElementById('boob-options-form');
-        boobOptionForm.style.display = 'block';
-        const bottleOptionForm = document.getElementById('bottle-options-form');
-        bottleOptionForm.style.display = 'none';
-    }
+    feeding.setFeedingTypeBoob();
 }
 
-// TODO: consider moving these to the Feeding class to more closely link the view changes to the data changes (instead of how they are currently - tied to the specific event handler)
 function bottleOptionClickHandler() {
-    feeding.setFeedingType('bottle');
-
-    // Update the bottle to ensure that it's not considered selected
-    const unselectedOption = document.getElementById('boob-option');
-    console.log(`unselected option classList ${unselectedOption.classList}`);
-    unselectedOption.classList.remove(`clickable-list-item-selected`);
-
-    const selectedObject = document.getElementById('bottle-option');
-    selectedObject.classList.add(`clickable-list-item-selected`);
-    console.log(`selected option classList ${selectedObject.classList}`);
-
-    // Now lets bring up the bottle option form and ensure the boob is closed
-    const boobOptionForm = document.getElementById('boob-options-form');
-    boobOptionForm.style.display = 'none';
-    const bottleOptionForm = document.getElementById('bottle-options-form');
-    bottleOptionForm.style.display = 'block';
+    feeding.setFeedingTypeBottle();
 }

@@ -15,6 +15,14 @@ header {
   background-color: #555;
 }
 
+.cmd-box {
+  background-color: #555;
+  font-size: 18px;
+  font-weight: 300;
+  color: silver;
+  border: 1px solid black;
+}
+
 header a {
   text-decoration: none;
   color: #555;
@@ -93,13 +101,6 @@ button {
   list-style-type: none;
   border: 1px solid black;
   border-radius: 2px;
-}
-
-.cmd-text {
-  font-size: 18px;
-  font-weight: 300;
-  color: silver;
-  border: 1px solid black;
 }
 
 img {
