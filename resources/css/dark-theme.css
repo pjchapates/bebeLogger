@@ -84,6 +84,21 @@ button {
   color: goldenrod;
 }
 
+.submit-cancel-button {
+  background-color: #353935;
+  color: #f79ac0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid black;
+  border-color: grey;
+  border-radius: 4px;
+}
+
+.submit-cancel-button:hover {
+  background-color: #4D5153;
+  color: goldenrod;
+}
+
 .clickable-list-item {
   font-size: 24px;
   font-weight: bold;

@@ -8,6 +8,11 @@
   flex-direction: column;
 }
 
+.flex-container-hor {
+  display: flex;
+  flex-direction: row;
+}
+
 .nested-form {
   margin-left: 5%;
   padding-left: 3px;
@@ -27,6 +32,7 @@ header {
   position: sticky;
   align-items: center;
   width: 100%;
+  margin-top: 5px;
 }
 
 /* TODO: give meaningful class names to these */
