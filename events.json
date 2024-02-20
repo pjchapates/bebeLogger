@@ -1,0 +1,22 @@
+[
+    {
+        "datetime": "YYYY-MM-DDTHH:mm",
+        "eventData": {
+            "eventtype": "feeding"
+        },
+        "childData": {
+            "householdId": 1,
+            "childId": 1
+        }
+    },
+    {
+        "datetime": "YYYY-MM-DDTHH:mm",
+        "eventData": {
+            "eventtype": "feeding"
+        },
+        "childData": {
+            "householdId": 1,
+            "childId": 1
+        }
+    },
+]

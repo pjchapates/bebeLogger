@@ -1,11 +1,16 @@
 .flex-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .flex-container-vert {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container-hor {
+  display: flex;
+  flex-direction: row;
 }
 
 .nested-form {
@@ -22,8 +27,16 @@ header {
   width: 100%;
 }
 
+.cmd-box {
+  margin-top: 95.5px;
+  position: sticky;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+}
+
 /* TODO: give meaningful class names to these */
-header > h1 {
+header>h1 {
   flex: 1;
   padding-left: 10px;
 }
@@ -62,9 +75,3 @@ body {
   margin: 0px 0px 10px 0px;
   padding: 5px;
 }
-
-
-  
-  
-
-  

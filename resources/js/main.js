@@ -6,6 +6,7 @@ class Diaper {
     constructor() {
         this.num1 = false;
         this.num2 = false;
+        this.eventTextBox = document.getElementById('diaper-event-log-txt');
     }
 
     toggleNum1() {
@@ -23,13 +24,90 @@ class Diaper {
     }
 }
 
+class ChildData {
+    householdId;
+    childId;
+
+    constructor() {
+        this.householdId = 0;
+        this.childId = 0;
+    }
+}
+
+class Event {
+    eventDateTime;
+    eventData;
+    childData;
+
+    constructor() {
+        this.eventDateTime = new Date();
+        this.childData = new ChildData();
+    }
+
+    toJson() {
+        const jsonOut = {
+            "datetime": "YYYY-MM-DDTHH:mm",
+            "eventData": {
+                "eventtype": "feeding"
+            },
+            "childData": {
+                "householdId": 1,
+                "childId": 1
+            }
+        };
+
+        // set our textbox to JSON output
+        this.eventData.eventTextBox.textContent = JSON.stringify(jsonOut, null, 2);
+        console.log(JSON.stringify(jsonOut, null, 2));
+    }
+}
+
 class Feeding {
     constructor() {
         this.feedingType = `none`;
+        this.feedingEventTxtBox = document.getElementById('feeding-event-log-txt');
     }
 
     setFeedingType(feedingType) {
         this.feedingType = feedingType;
+    }
+
+    setFeedingTypeBoob() {
+        this.feedingType = 'boob';
+
+        // Update the bottle to ensure that it's not considered selected
+        const unselectedOption = document.getElementById('bottle-option');
+        console.log(`unselected option classList ${unselectedOption.classList}`);
+        unselectedOption.classList.remove(`clickable-list-item-selected`);
+
+        const selectedObject = document.getElementById('boob-option');
+        selectedObject.classList.add(`clickable-list-item-selected`);
+        console.log(`selected option classList ${selectedObject.classList}`);
+
+        // Now lets bring up the boob option form and ensure the bottle is closed
+        const boobOptionForm = document.getElementById('boob-options-form');
+        boobOptionForm.style.display = 'block';
+        const bottleOptionForm = document.getElementById('bottle-options-form');
+        bottleOptionForm.style.display = 'none';
+    }
+
+    setFeedingTypeBottle() {
+        this.feedingType = 'bottle';
+
+        // Update the bottle to ensure that it's not considered selected
+        const unselectedOption = document.getElementById('boob-option');
+        console.log(`unselected option classList ${unselectedOption.classList}`);
+        unselectedOption.classList.remove(`clickable-list-item-selected`);
+
+        const selectedObject = document.getElementById('bottle-option');
+        selectedObject.classList.add(`clickable-list-item-selected`);
+        console.log(`selected option classList ${selectedObject.classList}`);
+
+        // Now lets bring up the bottle option form and ensure the boob is closed
+        const boobOptionForm = document.getElementById('boob-options-form');
+        boobOptionForm.style.display = 'none';
+        const bottleOptionForm = document.getElementById('bottle-options-form');
+        bottleOptionForm.style.display = 'block';
     }
 
     toString() {
@@ -52,16 +130,16 @@ class Logger {
 }
 
 // Globals
-const logCommandElement = document.getElementById('logCmdText');
 const diaper = new Diaper();
 const feeding = new Feeding();
 const logger = new Logger();
+const diaperEvent = new Event();
+diaperEvent.eventData = diaper;
 
 
 // Static Init
-logger.constructLogCmd(diaper.toString(), feeding.toString());
-logCommandElement.textContent = logger.logCmdText;
-logCommandElement.textContent = logger.logCmdText;
+diaperEvent.eventData.eventTextBox.textContent = `this is some dummy text`;
+diaperEvent.toJson();
 
 // Click handler for Diaper Logging
 document.getElementById('diaper-log-button').onclick = function () {
@@ -79,15 +157,36 @@ document.getElementById('diaper-log-button').onclick = function () {
 
 // Click handler for Feeding Logging
 document.getElementById('feeding-log-button').onclick = function () {
-    var element = document.getElementById('feeding-log-form');
+    var childElement = document.getElementById('feeding-log-form');
 
     // Toggle between displaying or not displaying form
-    if (element.style.display == 'block') {
+    if (childElement.style.display == 'block') {
         // TODO: update this to clear out the form data if you close it
-        element.style.display = 'none';
+        childElement.style.display = 'none';
     }
     else {
-        element.style.display = 'block'
+        childElement.style.display = 'block'
+    }
+}
+
+// Click handler for Diaper Log Submit
+document.getElementById('diaper-submit-button').onclick = function () {
+    alert(`Send it!`);
+}
+
+// Click handler for Diaper Cancel Submit
+document.getElementById('diaper-cancel-button').onclick = function () {
+    alert(`Cancel it!`);
+
+    var childElement = document.getElementById('diaper-log-form');
+
+    // Toggle between displaying or not displaying form
+    if (childElement.style.display == 'block') {
+        // TODO: update this to clear out the form data if you close it
+        childElement.style.display = 'none';
+    }
+    else {
+        childElement.style.display = 'block'
     }
 }
 
@@ -132,46 +231,9 @@ function listItemClicked(e) {
 
 function boobOptionClickHandler() {
     // If feeding type is already boob, then we want to 'deselect this?
-    if (feeding.feedingType == `boob`) {
-        return;
-    }
-
-    else {
-        feeding.setFeedingType('boob');
-
-        // Update the bottle to ensure that it's not considered selected
-        const unselectedOption = document.getElementById('bottle-option');
-        console.log(`unselected option classList ${unselectedOption.classList}`);
-        unselectedOption.classList.remove(`clickable-list-item-selected`);
-
-        const selectedObject = document.getElementById('boob-option');
-        selectedObject.classList.add(`clickable-list-item-selected`);
-        console.log(`selected option classList ${selectedObject.classList}`);
-
-        // Now lets bring up the boob option form and ensure the bottle is closed
-        const boobOptionForm = document.getElementById('boob-options-form');
-        boobOptionForm.style.display = 'block';
-        const bottleOptionForm = document.getElementById('bottle-options-form');
-        bottleOptionForm.style.display = 'none';
-    }
+    feeding.setFeedingTypeBoob();
 }
 
-// TODO: consider moving these to the Feeding class to more closely link the view changes to the data changes (instead of how they are currently - tied to the specific event handler)
 function bottleOptionClickHandler() {
-    feeding.setFeedingType('bottle');
-
-    // Update the bottle to ensure that it's not considered selected
-    const unselectedOption = document.getElementById('boob-option');
-    console.log(`unselected option classList ${unselectedOption.classList}`);
-    unselectedOption.classList.remove(`clickable-list-item-selected`);
-
-    const selectedObject = document.getElementById('bottle-option');
-    selectedObject.classList.add(`clickable-list-item-selected`);
-    console.log(`selected option classList ${selectedObject.classList}`);
-
-    // Now lets bring up the bottle option form and ensure the boob is closed
-    const boobOptionForm = document.getElementById('boob-options-form');
-    boobOptionForm.style.display = 'none';
-    const bottleOptionForm = document.getElementById('bottle-options-form');
-    bottleOptionForm.style.display = 'block';
+    feeding.setFeedingTypeBottle();
 }

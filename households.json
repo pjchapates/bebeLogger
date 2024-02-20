@@ -1,0 +1,22 @@
+{
+    "householdName": "The Chapates",
+    "household": 1,
+    "parents": [
+        {
+            "parent1id": 1234,
+            "parent2id": 5678
+        }
+    ],
+    "children": [
+        {
+            "name": "Timmy Bebe",
+            "dob": "MM/DD/YY",
+            "childid": 1
+        },
+        {
+            "name": "Tina Bebe",
+            "dob": "MM/DD/YY",
+            "childid": 2
+        }
+    ]
+}
