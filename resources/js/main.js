@@ -3,24 +3,49 @@ console.log('document title is %s', document.title);
 
 // Class definitions
 class Diaper {
+    num1Button;
+    num2Button;
     constructor() {
+        this.typeName = `diaper change`;
         this.num1 = false;
         this.num2 = false;
         this.eventTextBox = document.getElementById('diaper-event-log-txt');
     }
 
-    toggleNum1() {
+    toggleNum1(event) {
         this.num1 = !this.num1;
-        console.log(`diaper.num1 toggled to ${this.num1}`);
+        document.getElementById('num1').classList.toggle(`clickable-list-item-selected`);
     }
 
-    toggleNum2() {
+    toggleNum2(event) {
         this.num2 = !this.num2;
-        console.log(`diaper.num2 toggled to ${this.num2}`);
+        document.getElementById('num2').classList.toggle(`clickable-list-item-selected`);
     }
 
     toString() {
         return `numeroUno = ${this.num1}, numeroDos = ${this.num2}`;
+    }
+
+    toJson() {
+        const jsonOut = {
+            "eventtype": "diaper",
+            "eventoptions": {
+                "numero1": this.num1,
+                "numero2": this.num2
+            }
+        };
+
+        return jsonOut;
+    }
+
+    // Reset 
+    reset() {
+        const formElement = document.getElementById('diaper-log-form');
+        this.num1 = false;
+        document.getElementById('num1').classList.remove(`clickable-list-item-selected`);
+        this.num2 = false;
+        document.getElementById('num2').classList.remove(`clickable-list-item-selected`);
+        formElement.style.display = 'none';
     }
 }
 
@@ -46,24 +71,30 @@ class Event {
 
     toJson() {
         const jsonOut = {
-            "datetime": "YYYY-MM-DDTHH:mm",
-            "eventData": {
-                "eventtype": "feeding"
-            },
+            "datetime": this.eventDateTime,
+            "eventData": this.eventData.toJson(),
             "childData": {
-                "householdId": 1,
-                "childId": 1
+                "householdId": 0,
+                "childId": 0
             }
         };
 
-        // set our textbox to JSON output
+        return jsonOut;
+    }
+
+    updateEventText() {
+        const jsonOut = this.toJson();
         this.eventData.eventTextBox.textContent = JSON.stringify(jsonOut, null, 2);
-        console.log(JSON.stringify(jsonOut, null, 2));
+    }
+
+    push() {
+        alert(`pushing command ${JSON.stringify(this.toJson())}`);
     }
 }
 
 class Feeding {
     constructor() {
+        this.typeName = `diaper change`;
         this.feedingType = `none`;
         this.feedingEventTxtBox = document.getElementById('feeding-event-log-txt');
     }
@@ -113,6 +144,13 @@ class Feeding {
     toString() {
         return `feedType = ${this.feedingType}`;
     }
+
+    toJson() {
+        const jsonOut = {
+
+        };
+        return jsonOut;
+    }
 }
 
 class Logger {
@@ -135,11 +173,12 @@ const feeding = new Feeding();
 const logger = new Logger();
 const diaperEvent = new Event();
 diaperEvent.eventData = diaper;
+const num1Button = document.getElementById('num1');
+const num2Button = document.getElementById('num2');
 
 
 // Static Init
-diaperEvent.eventData.eventTextBox.textContent = `this is some dummy text`;
-diaperEvent.toJson();
+diaperEvent.updateEventText();
 
 // Click handler for Diaper Logging
 document.getElementById('diaper-log-button').onclick = function () {
@@ -151,7 +190,9 @@ document.getElementById('diaper-log-button').onclick = function () {
         element.style.display = 'none';
     }
     else {
+        diaperEvent.eventDateTime = new Date();
         element.style.display = 'block'
+        diaperEvent.updateEventText();
     }
 }
 
@@ -171,61 +212,52 @@ document.getElementById('feeding-log-button').onclick = function () {
 
 // Click handler for Diaper Log Submit
 document.getElementById('diaper-submit-button').onclick = function () {
-    alert(`Send it!`);
+    // Push the event, then clear out our previous event data
+    diaperEvent.push();
+    diaperEvent.eventData.reset();
 }
 
-// Click handler for Diaper Cancel Submit
+// Click handler for Diaper Log Cancel
 document.getElementById('diaper-cancel-button').onclick = function () {
     alert(`Cancel it!`);
-
-    var childElement = document.getElementById('diaper-log-form');
-
-    // Toggle between displaying or not displaying form
-    if (childElement.style.display == 'block') {
-        // TODO: update this to clear out the form data if you close it
-        childElement.style.display = 'none';
-    }
-    else {
-        childElement.style.display = 'block'
-    }
+    diaperEvent.eventData.reset();
 }
 
 
 // document.querySelectorAll('.clickable-list-item').forEach(element => element.addEventListener("mouseover", element => {
 //     console.log('List item hovered');
 // }));
-document.querySelectorAll('.clickable-list-item').forEach(element => element.addEventListener("click", listItemClicked));
+//document.querySelectorAll('.clickable-list-item').forEach(element => element.addEventListener("click", listItemClicked));
 
-
+document.querySelector('#num1').addEventListener('click', event => {
+    diaperEvent.eventData.toggleNum1();
+    diaperEvent.updateEventText();
+});
+document.querySelector('#num2').addEventListener('click', event => {
+    diaperEvent.eventData.toggleNum2();
+    diaperEvent.updateEventText();
+});
 
 function listItemClicked(e) {
-    e.target.classList.toggle(`clickable-list-item-selected`);
+
 
     switch (this.id) {
-        case 'num1':
-            if (!logCommandElement.textContent.includes(`eventNumero = 'uno'`)) {
-                diaper.toggleNum1();
-            }
-            break;
-        case 'num2':
-            if (!logCommandElement.textContent.includes(`eventNumero = 'uno'`)) {
-                diaper.toggleNum2();
-            }
-            break;
         case 'boob-option': {
+            e.target.classList.toggle(`clickable-list-item-selected`);
             boobOptionClickHandler();
             break;
         }
         case 'bottle-option': {
+            e.target.classList.toggle(`clickable-list-item-selected`);
             bottleOptionClickHandler();
             break;
         }
         default:
             console.log('unhandled item');
     }
-
-    logger.constructLogCmd(diaper.toString(), feeding.toString());
-    logCommandElement.textContent = logger.logCmdText;
+    // TODO: remove this
+    // logger.constructLogCmd(diaper.toString(), feeding.toString());
+    // logCommandElement.textContent = logger.logCmdText;
 }
 
 
