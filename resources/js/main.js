@@ -1,6 +1,8 @@
 console.log('inside main.js');
 console.log('document title is %s', document.title);
 
+const MS_PER_MIN = 60000;
+
 // Class definitions
 class Diaper {
     num1Button;
@@ -41,10 +43,16 @@ class Diaper {
     // Reset 
     reset() {
         const formElement = document.getElementById('diaper-log-form');
+        // Rest both the num selectors and their button toggle state
         this.num1 = false;
         document.getElementById('num1').classList.remove(`clickable-list-item-selected`);
         this.num2 = false;
         document.getElementById('num2').classList.remove(`clickable-list-item-selected`);
+
+        // Reset the delay selector
+        document.querySelector('#time-delay-diaper').value = 0;
+
+        // Collapse the form
         formElement.style.display = 'none';
     }
 }
@@ -72,7 +80,7 @@ class Event {
 
     toJson() {
         const jsonOut = {
-            "datetime": this.eventDateTime,
+            "datetime": new Date(this.eventDateTime - this.timeDelay * MS_PER_MIN),
             "eventData": this.eventData.toJson(),
             "childData": {
                 "householdId": 0,
@@ -89,6 +97,10 @@ class Event {
     }
 
     push() {
+        // Before we push, update the event time based on the selected delay
+        this.eventDateTime = new Date(this.eventDateTime - this.timeDelay * MS_PER_MIN);
+
+        // TODO: Add logic for actually pushing this
         alert(`pushing command ${JSON.stringify(this.toJson())}`);
     }
 }
@@ -232,14 +244,9 @@ document.querySelector('#num2').addEventListener('click', event => {
 });
 
 // Handle change of the delay drop down
-/*
-    TODO: 
-        1. On startup, init the value to 0 (selected?)
-        2. Figure out how to update the time in our JSON based on this delta
-        3. Add reset logic when we close out the log form
-*/
-document.querySelector('#time-delay').addEventListener('change', event => {
+document.querySelector('#time-delay-diaper').addEventListener('change', event => {
     diaperEvent.timeDelay = event.target.value;
+    diaperEvent.updateEventText();
 });
 
 
