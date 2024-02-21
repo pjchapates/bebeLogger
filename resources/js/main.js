@@ -200,11 +200,24 @@ document.getElementById('diaper-log-button').onclick = function () {
     // Toggle between displaying or not displaying form
     if (element.style.display == 'block') {
         element.style.display = 'none';
+
+        // Update Diaper Log button to show that it's no longer active
+        document.querySelector('#diaper-log-button').classList.remove('big-button-selected');
     }
     else {
+        // Bring up the diaper log entry form
         diaperEvent.eventDateTime = new Date();
         element.style.display = 'block'
         diaperEvent.updateEventText();
+
+        // Update Diaper Log button to show that it's active
+        document.querySelector('#diaper-log-button').classList.add('big-button-selected');
+
+        // Close any additional open forms
+        document.querySelector('#feeding-log-form').style.display = 'none';
+
+        // Make sure the other form button does not show that it's active
+        document.querySelector('#feeding-log-button').classList.remove('big-button-selected');
     }
 }
 
@@ -214,9 +227,22 @@ document.getElementById('feeding-log-button').onclick = function () {
     // Toggle between displaying or not displaying form
     if (childElement.style.display == 'block') {
         childElement.style.display = 'none';
+
+        // Make sure the other form button does not show that it's active
+        document.querySelector('#feeding-log-button').classList.remove('big-button-selected');
     }
     else {
+        // Bring up feeding log entry form
         childElement.style.display = 'block'
+
+        // Update Feeding Log button to show that it's active
+        document.querySelector('#feeding-log-button').classList.add('big-button-selected');
+
+        // Close any additional open forms
+        document.querySelector('#diaper-log-form').style.display = 'none';
+
+        // Make sure the other form button does not show that it's active
+        document.querySelector('#diaper-log-button').classList.remove('big-button-selected');
     }
 }
 

@@ -74,9 +74,14 @@ button {
   cursor: pointer;
 }
 
+select {
+  background-color: #4D5153;
+  color: cornflowerblue;
+}
+
 .big-button {
   background-color: #353935;
-  color: #f79ac0;
+  color: whitesmoke;
   padding-top: 10px;
   padding-bottom: 10px;
   border: 2px solid black;
@@ -89,10 +94,26 @@ button {
   color: goldenrod;
 }
 
+.big-button-selected {
+  background-color: #4D5153;
+  color: goldenrod;
+}
+
+.submit-button {
+  background-color: #353935;
+  color: cornflowerblue;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid black;
+  border-color: grey;
+  border-radius: 4px;
+}
+
 .submit-cancel-button {
   background-color: #353935;
   font-size: 14px;
-  color: cornflowerblue;
+  color: goldenrod;
   padding-top: 10px;
   padding-bottom: 10px;
   border: 2px solid black;
@@ -139,6 +160,10 @@ img {
 
 button:hover>img {
   filter: invert(58%) sepia(9%) saturate(2887%) hue-rotate(182deg) brightness(97%) contrast(92%);
+}
+
+footer {
+  font-size: 6px;
 }
 
 
