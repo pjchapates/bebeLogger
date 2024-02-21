@@ -63,10 +63,11 @@ class Event {
     eventDateTime;
     eventData;
     childData;
+    timeDelay;
 
     constructor() {
-        this.eventDateTime = new Date();
         this.childData = new ChildData();
+        this.timeDelay = 0;
     }
 
     toJson() {
@@ -182,11 +183,10 @@ diaperEvent.updateEventText();
 
 // Click handler for Diaper Logging
 document.getElementById('diaper-log-button').onclick = function () {
-    var element = document.getElementById('diaper-log-form');
+    const element = document.getElementById('diaper-log-form');
 
     // Toggle between displaying or not displaying form
     if (element.style.display == 'block') {
-        // TODO: update this to clear out the form data if you close it
         element.style.display = 'none';
     }
     else {
@@ -198,11 +198,9 @@ document.getElementById('diaper-log-button').onclick = function () {
 
 // Click handler for Feeding Logging
 document.getElementById('feeding-log-button').onclick = function () {
-    var childElement = document.getElementById('feeding-log-form');
-
+    const childElement = document.getElementById('feeding-log-form');
     // Toggle between displaying or not displaying form
     if (childElement.style.display == 'block') {
-        // TODO: update this to clear out the form data if you close it
         childElement.style.display = 'none';
     }
     else {
@@ -223,24 +221,30 @@ document.getElementById('diaper-cancel-button').onclick = function () {
     diaperEvent.eventData.reset();
 }
 
-
-// document.querySelectorAll('.clickable-list-item').forEach(element => element.addEventListener("mouseover", element => {
-//     console.log('List item hovered');
-// }));
-//document.querySelectorAll('.clickable-list-item').forEach(element => element.addEventListener("click", listItemClicked));
-
 document.querySelector('#num1').addEventListener('click', event => {
     diaperEvent.eventData.toggleNum1();
     diaperEvent.updateEventText();
 });
+
 document.querySelector('#num2').addEventListener('click', event => {
     diaperEvent.eventData.toggleNum2();
     diaperEvent.updateEventText();
 });
 
+// Handle change of the delay drop down
+/*
+    TODO: 
+        1. On startup, init the value to 0 (selected?)
+        2. Figure out how to update the time in our JSON based on this delta
+        3. Add reset logic when we close out the log form
+*/
+document.querySelector('#time-delay').addEventListener('change', event => {
+    diaperEvent.timeDelay = event.target.value;
+});
+
+
+// TODO: refactor this following pattern from diaper logger
 function listItemClicked(e) {
-
-
     switch (this.id) {
         case 'boob-option': {
             e.target.classList.toggle(`clickable-list-item-selected`);
@@ -255,9 +259,6 @@ function listItemClicked(e) {
         default:
             console.log('unhandled item');
     }
-    // TODO: remove this
-    // logger.constructLogCmd(diaper.toString(), feeding.toString());
-    // logCommandElement.textContent = logger.logCmdText;
 }
 
 
