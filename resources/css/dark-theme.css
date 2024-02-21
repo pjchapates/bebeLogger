@@ -17,7 +17,7 @@ header {
 
 .cmd-box {
   background-color: #555;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 300;
   color: silver;
   border: 1px solid black;
@@ -47,7 +47,13 @@ h1 {
 h2 {
   color: #f79ac0;
   font-family: roboto-mono;
-  font-size: 24px;
+  font-size: 18px;
+}
+
+h3 {
+  color: lightgoldenrodyellow;
+  font-family: roboto-mono;
+  font-size: 16px;
 }
 
 p {
@@ -86,6 +92,7 @@ button {
 
 .submit-cancel-button {
   background-color: #353935;
+  font-size: 14px;
   color: #f79ac0;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -116,6 +123,12 @@ button {
   list-style-type: none;
   border: 1px solid black;
   border-radius: 2px;
+}
+
+.big-label {
+  font-size: 16px;
+  font-weight: lighter;
+  color: #f79ac0;
 }
 
 img {

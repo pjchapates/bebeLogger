@@ -11,11 +11,27 @@
 .flex-container-hor {
   display: flex;
   flex-direction: row;
+  gap: 5px;
 }
 
 .nested-form {
-  margin-left: 5%;
+  margin-left: 1%;
   padding-left: 3px;
+}
+
+ul {
+  margin-top: 2px;
+  padding-inline-start: 4px;
+}
+
+pre {
+  padding-bottom: 2px;
+  margin-bottom: 2px;
+}
+
+h2 {
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 /* TODO: look up CSS position sticky */
@@ -25,6 +41,11 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
 }
 
 .cmd-box {
@@ -52,7 +73,7 @@ header>h1 {
 header li {
   list-style: none;
   display: inline-block;
-  padding: 0 10px;
+  padding: 0 2px;
 }
 
 .button-icon-center {
