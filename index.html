@@ -34,17 +34,19 @@
         <div class="flex-container-vert">
             <button class="big-button" id="diaper-log-button">
                 logDiaperChange
-                <img src="../resources/imgs/diaper-icon.png" alt="Diaper Icon" class="button-icon-center icon" />
             </button>
             <div class="flex-container-vert nested-form" id="diaper-log-form" style="display: none">
                 <pre class="cmd-box" id="diaper-event-log-txt"></pre>
                 <h2>Select all that apply:</h2>
                 <ul>
-                    <li class="clickable-list-item diaper-option" id="num1">Numero Uno</li>
-                    <li class="clickable-list-item diaper-option" id="num2">Numero Dos</li>
-                    <label class="big-label" for="time-delay">Logging for a time in the past? Select how long ago the
-                        event actually occurred.</label><br>
-                    <select id="time-delay" name="time-delay" size="1" style="flex-grow: 1;">
+                    <div class="flex-container-hor">
+                        <li class="clickable-list-item diaper-option" style="flex-grow: 1;" id="num1">Numero Uno</li>
+                        <li class="clickable-list-item diaper-option" style="flex-grow: 1;" id="num2">Numero Dos</li>
+                    </div>
+                    <label class="big-label" for="time-delay-diaper">Logging for a time in the past? Select how long ago
+                        the
+                        event actually occurred.</label>
+                    <select id="time-delay-diaper" name="time-delay-diaper" size="1" style="flex-grow: 1;">
                         <option selected="selected" value="0">N/A</option>
                         <option value="15">15 min</option>
                         <option value="30">30 min</option>

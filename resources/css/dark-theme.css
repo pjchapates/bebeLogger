@@ -16,10 +16,10 @@ header {
 }
 
 .cmd-box {
-  background-color: #555;
+  background-color: #3b3a39;
   font-size: 12px;
   font-weight: 300;
-  color: silver;
+  color: darkgoldenrod;
   border: 1px solid black;
 }
 
@@ -41,24 +41,24 @@ header a {
 h1 {
   color: lightgoldenrodyellow;
   font-family: roboto-mono;
-  font-size: 24px;
+  font-size: 14px;
 }
 
 h2 {
   color: #f79ac0;
   font-family: roboto-mono;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 h3 {
   color: lightgoldenrodyellow;
   font-family: roboto-mono;
-  font-size: 16px;
+  font-size: 10px;
 }
 
 p {
   font-family: roboto-mono;
-  font-size: 20px;
+  font-size: 8px;
 }
 
 button {
@@ -70,7 +70,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-family: roboto-mono;
-  font-size: 24px;
+  font-size: 14px;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -78,8 +78,8 @@ button {
 .big-button {
   background-color: #353935;
   color: #f79ac0;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border: 2px solid black;
   border-color: grey;
   border-radius: 4px;
@@ -107,7 +107,7 @@ button {
 }
 
 .clickable-list-item {
-  font-size: 24px;
+  font-size: 14px;
   font-weight: bold;
   color: lightgoldenrodyellow;
   list-style-type: none;
@@ -116,9 +116,7 @@ button {
 }
 
 .clickable-list-item-selected {
-  font-size: 24px;
-  font-weight: bold;
-  background-color: lightskyblue;
+  background-color: #0336a3;
   color: lightgoldenrodyellow;
   list-style-type: none;
   border: 1px solid black;
@@ -126,7 +124,7 @@ button {
 }
 
 .big-label {
-  font-size: 16px;
+  font-size: 10px;
   font-weight: lighter;
   color: #f79ac0;
 }
