@@ -20,7 +20,6 @@ header {
   font-size: 12px;
   font-weight: 300;
   color: darkgoldenrod;
-  border: 1px solid black;
 }
 
 header a {
@@ -45,7 +44,7 @@ h1 {
 }
 
 h2 {
-  color: #f79ac0;
+  color: whitesmoke;
   font-family: roboto-mono;
   font-size: 12px;
 }
@@ -70,7 +69,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-family: roboto-mono;
-  font-size: 14px;
+  font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -93,7 +92,7 @@ button {
 .submit-cancel-button {
   background-color: #353935;
   font-size: 14px;
-  color: #f79ac0;
+  color: cornflowerblue;
   padding-top: 10px;
   padding-bottom: 10px;
   border: 2px solid black;
@@ -107,26 +106,31 @@ button {
 }
 
 .clickable-list-item {
+  text-align: center;
   font-size: 14px;
   font-weight: bold;
-  color: lightgoldenrodyellow;
+  color: cornflowerblue;
   list-style-type: none;
-  border: 1px solid black;
+  border: 1px solid #4D5153;
   border-radius: 2px;
 }
 
 .clickable-list-item-selected {
-  background-color: #0336a3;
+  background-color: cornflowerblue;
   color: lightgoldenrodyellow;
   list-style-type: none;
-  border: 1px solid black;
+  border: 1px solid #4D5153;
   border-radius: 2px;
 }
 
 .big-label {
   font-size: 10px;
   font-weight: lighter;
-  color: #f79ac0;
+  color: whitesmoke;
+}
+
+.nested-form {
+  border-left: 1px solid #4D5153;
 }
 
 img {
