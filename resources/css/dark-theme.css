@@ -69,12 +69,13 @@ button {
   text-decoration: none;
   display: inline-block;
   font-family: roboto-mono;
-  font-size: 16px;
+  font-size: 18px;
   margin: 4px 2px;
   cursor: pointer;
 }
 
 select {
+  font-size: 16px;
   background-color: #4D5153;
   color: cornflowerblue;
 }
@@ -102,7 +103,7 @@ select {
 .submit-button {
   background-color: #353935;
   color: cornflowerblue;
-  font-size: 14px;
+  font-size: 16px;
   padding-top: 10px;
   padding-bottom: 10px;
   border: 2px solid black;
@@ -112,7 +113,7 @@ select {
 
 .submit-cancel-button {
   background-color: #353935;
-  font-size: 14px;
+  font-size: 16px;
   color: goldenrod;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -128,7 +129,7 @@ select {
 
 .clickable-list-item {
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: cornflowerblue;
   list-style-type: none;
@@ -145,7 +146,7 @@ select {
 }
 
 .big-label {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: lighter;
   color: whitesmoke;
 }
