@@ -11,7 +11,7 @@ class Diaper {
         this.typeName = `diaper change`;
         this.num1 = false;
         this.num2 = false;
-        this.eventTextBox = document.getElementById('diaper-event-log-txt');
+        this.eventTextBox = document.querySelector('#diaper-event-log-txt');
     }
 
     toggleNum1(event) {
@@ -109,7 +109,10 @@ class Feeding {
     constructor() {
         this.typeName = `diaper change`;
         this.feedingType = `none`;
-        this.feedingEventTxtBox = document.getElementById('feeding-event-log-txt');
+        this.bottleVolume = 0;
+        this.leftDuration = 0;
+        this.rightDuration = 0;
+        this.eventTextBox = document.querySelector('#feeding-event-log-txt');
     }
 
     setFeedingType(feedingType) {
@@ -133,6 +136,10 @@ class Feeding {
         boobOptionForm.style.display = 'block';
         const bottleOptionForm = document.getElementById('bottle-options-form');
         bottleOptionForm.style.display = 'none';
+
+        // Init our durations
+        this.leftDuration = document.querySelector('#left-duration-feeding').value;
+        this.rightDuration = document.querySelector('#right-duration-feeding').value;
     }
 
     setFeedingTypeBottle() {
@@ -152,6 +159,9 @@ class Feeding {
         boobOptionForm.style.display = 'none';
         const bottleOptionForm = document.getElementById('bottle-options-form');
         bottleOptionForm.style.display = 'block';
+
+        // Init our value
+        this.bottleVolume = document.querySelector('#bottle-quant-feeding').value;
     }
 
     toString() {
@@ -159,10 +169,49 @@ class Feeding {
     }
 
     toJson() {
-        const jsonOut = {
+        let feedingData = {};
+        if (this.feedingType == "boob") {
+            feedingData = {
+                "leftDuration": this.leftDuration,
+                "rightDuration": this.rightDuration
+            };
+        }
 
+        else if (this.feedingType == "bottle") {
+            feedingData = {
+                "bottleVolume": this.bottleVolume
+            };
+        }
+
+        else {
+            feedingData = {};
+        }
+
+        const jsonOut = {
+            "feedingType": this.feedingType,
+            "feedingData": feedingData
         };
         return jsonOut;
+    }
+
+    reset() {
+        const formElement = document.getElementById('feeding-log-form');
+        // Rest both the num selectors and their button toggle state
+        document.querySelector('#boob-option').classList.remove(`clickable-list-item-selected`);
+        document.querySelector('#bottle-option').classList.remove(`clickable-list-item-selected`);
+        document.querySelector('#left-duration-feeding').value = 0;
+        this.leftDuration = 0;
+        document.querySelector('#right-duration-feeding').value = 0;
+        this.rightDuration = 0;
+        document.querySelector('#bottle-quant-feeding').value = 4;
+        this.bottleVolume = 0;
+
+        // Collapse the forms
+        formElement.style.display = 'none';
+        const boobOptionForm = document.querySelector('#boob-options-form');
+        boobOptionForm.style.display = 'none';
+        const bottleOptionForm = document.querySelector('#bottle-options-form');
+        bottleOptionForm.style.display = 'none';
     }
 }
 
@@ -181,25 +230,30 @@ class Logger {
 }
 
 // Globals
-const diaper = new Diaper();
-const feeding = new Feeding();
 const logger = new Logger();
+
 const diaperEvent = new Event();
+const diaper = new Diaper();
 diaperEvent.eventData = diaper;
-const num1Button = document.getElementById('num1');
-const num2Button = document.getElementById('num2');
+
+const feedingEvent = new Event();
+const feeding = new Feeding();
+feedingEvent.eventData = feeding;
+
+const num1Button = document.querySelector('#num1');
+const num2Button = document.querySelector('num2');
 
 
 // Static Init
 diaperEvent.updateEventText();
 
 // Click handler for Diaper Logging
-document.getElementById('diaper-log-button').onclick = function () {
-    const element = document.getElementById('diaper-log-form');
+document.querySelector('#diaper-log-button').onclick = function () {
+    const formElement = document.querySelector('#diaper-log-form');
 
     // Toggle between displaying or not displaying form
-    if (element.style.display == 'block') {
-        element.style.display = 'none';
+    if (formElement.style.display == 'block') {
+        formElement.style.display = 'none';
 
         // Update Diaper Log button to show that it's no longer active
         document.querySelector('#diaper-log-button').classList.remove('big-button-selected');
@@ -207,7 +261,7 @@ document.getElementById('diaper-log-button').onclick = function () {
     else {
         // Bring up the diaper log entry form
         diaperEvent.eventDateTime = new Date();
-        element.style.display = 'block'
+        formElement.style.display = 'block'
         diaperEvent.updateEventText();
 
         // Update Diaper Log button to show that it's active
@@ -222,8 +276,8 @@ document.getElementById('diaper-log-button').onclick = function () {
 }
 
 // Click handler for Feeding Logging
-document.getElementById('feeding-log-button').onclick = function () {
-    const childElement = document.getElementById('feeding-log-form');
+document.querySelector('#feeding-log-button').onclick = function () {
+    const childElement = document.querySelector('#feeding-log-form');
     // Toggle between displaying or not displaying form
     if (childElement.style.display == 'block') {
         childElement.style.display = 'none';
@@ -233,7 +287,9 @@ document.getElementById('feeding-log-button').onclick = function () {
     }
     else {
         // Bring up feeding log entry form
+        feedingEvent.eventDateTime = new Date();
         childElement.style.display = 'block'
+        feedingEvent.updateEventText();
 
         // Update Feeding Log button to show that it's active
         document.querySelector('#feeding-log-button').classList.add('big-button-selected');
@@ -247,14 +303,14 @@ document.getElementById('feeding-log-button').onclick = function () {
 }
 
 // Click handler for Diaper Log Submit
-document.getElementById('diaper-submit-button').onclick = function () {
+document.querySelector('#diaper-submit-button').onclick = function () {
     // Push the event, then clear out our previous event data
     diaperEvent.push();
     diaperEvent.eventData.reset();
 }
 
 // Click handler for Diaper Log Cancel
-document.getElementById('diaper-cancel-button').onclick = function () {
+document.querySelector('#diaper-cancel-button').onclick = function () {
     alert(`Cancel it!`);
     diaperEvent.eventData.reset();
 }
@@ -276,30 +332,51 @@ document.querySelector('#time-delay-diaper').addEventListener('change', event =>
 });
 
 
-// TODO: refactor this following pattern from diaper logger
-function listItemClicked(e) {
-    switch (this.id) {
-        case 'boob-option': {
-            e.target.classList.toggle(`clickable-list-item-selected`);
-            boobOptionClickHandler();
-            break;
-        }
-        case 'bottle-option': {
-            e.target.classList.toggle(`clickable-list-item-selected`);
-            bottleOptionClickHandler();
-            break;
-        }
-        default:
-            console.log('unhandled item');
-    }
+document.querySelector('#boob-option').addEventListener('click', event => {
+    event.target.classList.toggle(`clickable-list-item-selected`);
+    boobOptionClickHandler();
+});
+
+document.querySelector('#bottle-option').addEventListener('click', event => {
+    event.target.classList.toggle(`clickable-list-item-selected`);
+    bottleOptionClickHandler();
+});
+
+document.querySelector('#left-duration-feeding').addEventListener('change', event => {
+    feedingEvent.eventData.leftDuration = event.target.value;
+    feedingEvent.updateEventText();
+});
+
+document.querySelector('#right-duration-feeding').addEventListener('change', event => {
+    feedingEvent.eventData.rightDuration = event.target.value;
+    feedingEvent.updateEventText();
+});
+
+document.querySelector('#bottle-quant-feeding').addEventListener('change', event => {
+    feedingEvent.eventData.bottleVolume = event.target.value;
+    feedingEvent.updateEventText();
+});
+
+// Click handler for Diaper Log Submit
+document.querySelector('#feeding-submit-button').onclick = function () {
+    // Push the event, then clear out our previous event data
+    feedingEvent.push();
+    feedingEvent.eventData.reset();
 }
 
+// Click handler for Diaper Log Cancel
+document.querySelector('#feeding-cancel-button').onclick = function () {
+    alert(`Cancel it!`);
+    feedingEvent.eventData.reset();
+}
 
 function boobOptionClickHandler() {
     // If feeding type is already boob, then we want to 'deselect this?
     feeding.setFeedingTypeBoob();
+    feedingEvent.updateEventText();
 }
 
 function bottleOptionClickHandler() {
     feeding.setFeedingTypeBottle();
+    feedingEvent.updateEventText();
 }

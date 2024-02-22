@@ -69,28 +69,57 @@
                 logFeeding
             </button>
             <div class="flex-container-vert nested-form" id="feeding-log-form" style="display: none">
-                <ul class="flex-container">
+                <pre class="cmd-box" id="feeding-event-log-txt"></pre>
+                <ul class="flex-container-hor">
                     <li style="display: inline; flex-grow: 1" class="clickable-list-item" id="boob-option">Boob</li>
                     <li style="display: inline; flex-grow: 1" class="clickable-list-item" id="bottle-option">Bottle</li>
                 </ul>
                 <div class="flex-container-vert nested-form" id="boob-options-form" style="display: none">
-                    <ul>
-                        <li class="clickable-list-item" id="booboption1">booboption1</li>
-                        <li class="clickable-list-item" id="booboption2">booboption2</li>
-                        <li>
-                            <div>
-                                <input type="range" id="left-duration" name="left-duration" min="0" max="10" />
-                                <label for="left-duration">Left Duration</label>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="flex-container-hor">
+                        <div>
+                            <label class="big-label" for="left-duration-feeding">Left boob duration</label>
+                            <select id="left-duration-feeding" name="left-duration-feeding" size="1"
+                                style="flex-grow: 1;">
+                                <option selected="selected" value="0">0 min</option>
+                                <option value="5">5 min</option>
+                                <option value="10">10 min</option>
+                                <option value="15">15 min</option>
+                                <option value="30">30 min</option>
+                                <option value="45">45 min</option>
+                                <option value="60">60 min</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="big-label" for="right-duration-feeding">Right boob duration</label>
+                            <select id="right-duration-feeding" name="right-duration-feeding" size="1"
+                                style="flex-grow: 1;">
+                                <option selected="selected" value="0">0 min</option>
+                                <option value="5">5 min</option>
+                                <option value="10">10 min</option>
+                                <option value="15">15 min</option>
+                                <option value="30">30 min</option>
+                                <option value="45">45 min</option>
+                                <option value="60">60 min</option>
+                            </select>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="flex-container-vert nested-form" id="bottle-options-form" style="display: none">
-                    <ul>
-                        <li class="clickable-list-item" id="bottleoption1">bottleoption1</li>
-                        <li class="clickable-list-item" id="bottleoption2">bottleoption2</li>
-                    </ul>
+                    <label class="big-label" for="bottle-quant-feeding">Bottle quantity</label>
+                    <select id="bottle-quant-feeding" name="bottle-quant-feeding" size="1">
+                        <option value="2">2 oz (half bottle)</option>
+                        <option selected="selected" value="4">4 oz (full bottle)</option>
+                        <option value="8">8 oz (two bottles)</option>
+                        <option value="12">12 oz (three bottles)</option>
+                        <option value="16">16 oz (four bottles)</option>
+                    </select>
+                </div>
+                <div class="flex-container-hor" id="feeding-submit-cancel">
+                    <button class="submit-button" type="button" id="feeding-submit-button" style="flex-grow: 1;">Log
+                        It!</button>
+                    <button class="submit-cancel-button" type="button" id="feeding-cancel-button"
+                        style="flex-grow: 1;">Cancel</button>
                 </div>
             </div>
 
@@ -102,14 +131,5 @@
 
     <script type="text/javascript" src="../resources/js/main.js"></script>
 </body>
-
-<footer>
-    <div class="flex-container">
-        <a href="https://www.flaticon.com/free-icons/diaper" title="diaper icons">Diaper icons created by Smashicons -
-            Flaticon</a>
-        <a href="https://www.flaticon.com/free-icons/baby-bottle" title="baby bottle icons">Baby bottle icons created by
-            Freepik - Flaticon</a>
-    </div>
-</footer>
 
 </html>
